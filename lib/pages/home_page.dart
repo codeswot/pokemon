@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                             height: 50,
                             width: 200,
                             child: ElevatedButton.icon(
-                              onPressed: () {},
+                              onPressed: () => context.go('/all'),
                               icon: const Icon(Icons.play_arrow),
                               label: const Text('Go get `em'),
                             ),

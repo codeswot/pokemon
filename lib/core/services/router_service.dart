@@ -3,6 +3,8 @@ import 'package:pokemon/pages/error_page.dart';
 import 'package:pokemon/pages/home_page.dart';
 import 'package:pokemon/pages/pokemon_page.dart';
 
+import '../../pages/all_pokemons.dart';
+
 class NavigationServices {
   /// Using the package Go-router
   final router = GoRouter(
@@ -19,6 +21,10 @@ class NavigationServices {
       GoRoute(
         path: '/error',
         builder: (context, state) => const ErrorPage(),
+      ),
+      GoRoute(
+        path: '/all',
+        builder: (context, state) => const AllPokemons(),
       ),
     ],
     errorBuilder: (context, state) => const ErrorPage(),
