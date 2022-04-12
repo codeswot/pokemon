@@ -24,23 +24,26 @@ class _AllPokemonsState extends State<AllPokemons> {
       body: FutureBuilder<List<Pokemons>?>(
           future: di.apiServices.getAllPokemon(),
           builder: (context, snapshot) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 2 / 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20),
-                itemBuilder: (BuildContext ctx, index) {
-                  final data = snapshot.data![index];
-                  return PokemonCard(
-                    data.picture,
-                    onTap: () => context.go('/pokemon/${data.id}'),
-                  );
-                },
-              ),
-            );
+            if (snapshot.hasData) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 2 / 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemBuilder: (BuildContext ctx, index) {
+                    final data = snapshot.data![index];
+                    return PokemonCard(
+                      data.picture,
+                      onTap: () => context.go('/pokemon/${data.id}'),
+                    );
+                  },
+                ),
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
           }),
     );
   }
